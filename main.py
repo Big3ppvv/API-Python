@@ -27,18 +27,5 @@ async def getUrl():
     params=query
   )
   await response
-  if
 
-
-  
 asyncio.run(getUrl())
-
-  
-
-
-
-
-
-
-
-
