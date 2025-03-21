@@ -1,31 +1,28 @@
-from fastapi import FastAPI
-from pydantic import BaseModel
-import requests,json,asyncio
+import requests,asyncio
+from flask import Flask
 
+app = Flask(__name__) 
 
-app = FastAPI()
+@app.route('/getURL')
+def getURL():
+    id = "TrelloID"
+    url = f"ttps://trello.com/b/EyVgS1IC/api-prueba/{id}/boards/cards"
 
-# class TrelloUpdateUrl(BaseModel):
-@app.get("/url")
-async def getUrl():
-  id = "TrelloID"
-  url = "https://trello.com/b/EyVgS1IC/api-prueba/boards/cards"
+    query = {
+    'key': 'APIKey',
+    'token': 'APIToken'
+    }
 
-  query = {
-  'key': 'APIKey',
-  'token': 'APIToken'
-  }
+    headers = {
+    "Accept": "application/json"
+    } 
 
-  headers = {
-  "Accept": "application/json"
-  } 
-
-  response = requests.request(
-   "get",
-    url,
-    headers=headers,
-    params=query
-  )
-  await response
-
-asyncio.run(getUrl())
+    response = requests.request(
+    "get",
+      url,
+      headers=headers,
+      params=query
+    )
+    return "Hello"
+    
+  
