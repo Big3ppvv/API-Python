@@ -1,26 +1,31 @@
 import requests,asyncio
-from flask import Flask
-def main():
-  app = Flask(__name__)
+from flask import Flask,render_template
 
-  @app.route('/getURL')
-  def getURL():
-      id = "TrelloID"
-      url = f"https://trello.com/b/EyVgS1IC/api-prueba/1/{id}/boards/cards"
+app = Flask(__name__)
 
-      query = {
-      'key': 'APIKey',
-      'token': 'APIToken'
-      }
+@app.route('/getURL')
+def getURL():
+  id = "TrelloID"
+  url = f"https://trello.com/b/EyVgS1IC/api-prueba/1/{id}/boards/cards"
 
-      headers = {
-      "Accept": "application/json"
-      } 
+  query = {
+  'key': 'APIKey',
+  'token': 'APIToken'
+  }
 
-      response = requests.request(
-      "get",
-        url,
-        headers=headers,
-        params=query
-      )
-      return "Hello World"
+  headers = {
+  "Accept": "application/json"
+  } 
+
+  response = requests.request(
+  "get",
+    url,
+    headers=headers,
+    params=query
+  )
+  return render_template('/API-Python/templates/home.html')
+ 
+
+# @app.route('/updateURL/<url>')
+# def updateURL(url):
+#   return f'<h1>Hola mUNDO'
