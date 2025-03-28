@@ -23,7 +23,7 @@ def getURL():
     headers=headers,
     params=query
   )
-  return render_template('/API-Python/templates/home.html')
+  return render_template('home.html')
  
 
 # @app.route('/updateURL/<url>')
